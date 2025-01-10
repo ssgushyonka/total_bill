@@ -14,7 +14,7 @@ class TotalBillView: UIView {
     
     let summTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = #colorLiteral(red: 0.8431372549, green: 0.8588235294, blue: 0.8666666667, alpha: 1)
+        textField.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8588235294, alpha: 1)
         textField.layer.cornerRadius = 10
         textField.textColor = .black
         textField.font = .systemFont(ofSize: 38, weight: .bold)
@@ -27,7 +27,8 @@ class TotalBillView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpView()
-        setUpConstraints()    }
+        setUpConstraints()
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
