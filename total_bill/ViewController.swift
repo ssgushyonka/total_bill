@@ -4,6 +4,7 @@ import UIKit
 class ViewController: UIViewController {
 
     let totalBillView = TotalBillView()
+    let personsView = PersonsView()
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -34,9 +35,20 @@ class ViewController: UIViewController {
         return label
     }()
     
+    let calculateButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Рассчитать", for: .normal)
+        button.tintColor = .white
+        button.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+        button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.963079989, green: 1, blue: 0.9381663203, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.97, green: 0.97, blue: 0.95, alpha: 1)
         setUpViews()
         setUpConstraints()
     }
@@ -46,6 +58,8 @@ class ViewController: UIViewController {
         view.addSubview(imageView)
         view.addSubview(descriptionLabel)
         view.addSubview(totalBillView)
+        view.addSubview(personsView)
+        view.addSubview(calculateButton)
     }
 
 }
@@ -69,7 +83,17 @@ extension ViewController {
             totalBillView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
             totalBillView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             totalBillView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            totalBillView.heightAnchor.constraint(equalToConstant: 150)
+            totalBillView.heightAnchor.constraint(equalToConstant: 130),
+            
+            personsView.topAnchor.constraint(equalTo: totalBillView.bottomAnchor, constant: 10),
+            personsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            personsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            personsView.heightAnchor.constraint(equalToConstant: 130),
+            
+            calculateButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            calculateButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            calculateButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            calculateButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 }

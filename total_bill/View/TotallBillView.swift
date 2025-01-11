@@ -12,7 +12,7 @@ class TotalBillView: UIView {
         return label
     }()
     
-    let summTextField: UITextField = {
+    let backgroundGrayView: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.8862745098, blue: 0.8588235294, alpha: 1)
         textField.layer.cornerRadius = 10
@@ -37,7 +37,7 @@ class TotalBillView: UIView {
     func setUpView() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(titleLabel)
-        addSubview(summTextField)
+        addSubview(backgroundGrayView)
     }
     
     func setUpConstraints() {
@@ -45,10 +45,10 @@ class TotalBillView: UIView {
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             
-            summTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
-            summTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            summTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            summTextField.heightAnchor.constraint(equalToConstant: 100)
+            backgroundGrayView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
+            backgroundGrayView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            backgroundGrayView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            backgroundGrayView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 }
