@@ -20,23 +20,27 @@ class PersonsView: UIView {
         return textField
     }()
     
-    let minusButton: UIButton = {
+    lazy var minusButton: UIButton = {
         let button = UIButton()
         button.setTitle("-", for: .normal)
         button.setTitleColor(.systemGray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 70, weight: .regular)
+        button.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    let plusButton: UIButton = {
+    lazy var plusButton: UIButton = {
         let button = UIButton()
         button.setTitle("+", for: .normal)
         button.setTitleColor(.systemGray, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 70, weight: .regular)
+        button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    var counter = 0
     
     let counterLabel: UILabel = {
         let label = UILabel()
@@ -91,5 +95,22 @@ class PersonsView: UIView {
             counterLabel.leadingAnchor.constraint(equalTo: minusButton.trailingAnchor, constant: 10),
             counterLabel.trailingAnchor.constraint(equalTo: plusButton.leadingAnchor, constant: -10),
         ])
+    }
+}
+
+extension PersonsView {
+    @objc func minusButtonTapped() {
+        if counter == 0 {
+            minusButton.isEnabled = false
+        } else {
+            counter -= 1
+            counterLabel.text = "\(counter)"
+        }
+    }
+    
+    @objc func plusButtonTapped() {
+        counter += 1
+        counterLabel.text = "\(counter)"
+        minusButton.isEnabled = true
     }
 }

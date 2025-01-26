@@ -36,13 +36,14 @@ class ViewController: UIViewController {
         return label
     }()
     
-    let calculateButton: UIButton = {
+    lazy var calculateButton: UIButton = {
         let button = UIButton()
         button.setTitle("Рассчитать", for: .normal)
         button.tintColor = .white
         button.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(calculateButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -52,6 +53,7 @@ class ViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.97, green: 0.97, blue: 0.95, alpha: 1)
         setUpViews()
         setUpConstraints()
+        addTap()
     }
 
     func setUpViews() {
@@ -64,6 +66,12 @@ class ViewController: UIViewController {
         view.addSubview(tipsView)
     }
 
+    func addTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
 }
 
 extension ViewController {
@@ -102,5 +110,28 @@ extension ViewController {
             calculateButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             calculateButton.heightAnchor.constraint(equalToConstant: 60),
         ])
+    }
+}
+
+extension ViewController {
+    
+    @objc func calculateButtonTapped() {
+        guard let totalBill = totalBillView.backgroundGrayView.text,
+              let totalBillInt = Int(totalBill) else { return }
+        let summ = totalBillInt + totalBillInt * tipsView.tipsCount / 100
+        let persons = personsView.counter
+        if persons == 0 {
+            descriptionLabel.text = "Введите количество персон"
+            descriptionLabel.textColor = .red
+        } else {
+            let result = summ / persons
+            descriptionLabel.text = "\(result) на человека"
+            descriptionLabel.textColor = .black
+            print(result)
+        }
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 }

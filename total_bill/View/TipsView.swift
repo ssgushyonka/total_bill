@@ -14,6 +14,7 @@ class TipsView: UIView {
     }()
     
     let tipsArray = ["0%", "10%", "15%", "20%"]
+    var tipsCount = 0
     
     let collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewFlowLayout()
@@ -59,7 +60,18 @@ extension TipsView: UICollectionViewDelegateFlowLayout {
 extension TipsView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        switch indexPath.row {
+        case 0:
+            tipsCount = 10
+        case 1:
+            tipsCount = 10
+        case 2:
+            tipsCount = 15
+        case 3:
+            tipsCount = 20
+        default:
+            tipsCount = 0
+        }
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
